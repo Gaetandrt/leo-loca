@@ -21,7 +21,7 @@ function SecondSection() {
       </div>
       <div className="flex items-center justify-between text-foreground">
         <span />
-        <h2 className="text-4xl">
+        <h2 className="text-2xl">
           Un accompagnement
           <span className="font-bold">complet</span> et{" "}
           <span className="font-bold">fluide</span>, pour mener à bien votre

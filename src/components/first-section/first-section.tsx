@@ -1,9 +1,15 @@
-import * as motion from "motion/react-client";
+"use client";
+
+import { motion, useScroll, useTransform } from "motion/react";
 
 function FirstSection() {
+  const { scrollYProgress } = useScroll();
+  const topValue = useTransform(scrollYProgress, [0, 1], [144, 700]);
+
   return (
     <section className="relative z-10 -mt-24 flex h-[1050px] w-full flex-col items-center justify-center bg-background-full bg-cover bg-center bg-no-repeat">
       <motion.div
+        style={{ top: topValue }}
         initial={{ top: -300 }}
         animate={{ top: 144 }}
         transition={{ duration: 1, ease: "backOut" }}

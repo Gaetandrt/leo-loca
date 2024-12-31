@@ -1,12 +1,24 @@
+import * as motion from "motion/react-client";
+
 function FirstSection() {
   return (
     <section className="relative z-10 -mt-24 flex h-[1050px] w-full flex-col items-center justify-center bg-background-full bg-cover bg-center bg-no-repeat">
-      <h1 className="absolute top-36 z-20 text-[225px] font-bold tracking-[40px] text-[#392A0B]">
-        LOUEZ
-      </h1>
-      <h1 className="absolute top-96 z-40 text-[190px] font-light text-foreground opacity-80">
-        SIMPLEMENT
-      </h1>
+      <motion.div
+        initial={{ top: -300 }}
+        animate={{ top: 144 }}
+        transition={{ duration: 1, ease: "backOut" }}
+        className="absolute z-20 text-[225px] font-bold tracking-[40px] text-[#392A0B]"
+      >
+        <h1>LOUEZ</h1>
+      </motion.div>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 0.8 }}
+        transition={{ duration: 2, ease: "anticipate" }}
+        className="absolute top-96 z-40 text-[190px] font-light text-foreground"
+      >
+        <h1>SIMPLEMENT</h1>
+      </motion.div>
       <p className="absolute top-[950px] z-50 text-[25px] text-foreground opacity-80">
         Laissez vous guider ▼
       </p>

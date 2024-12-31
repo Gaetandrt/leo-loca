@@ -6,8 +6,8 @@ type Props = {
 
 function TopNav({ children }: Props) {
   return (
-    <header className="flex flex-col items-center justify-center w-full bg-transparent">
-      <nav className="flex justify-between items-center p-8 w-full z-30">
+    <header className="flex w-full flex-col items-center justify-center bg-transparent">
+      <nav className="z-30 flex w-full items-center justify-between p-8 text-background">
         <div className="flex items-center gap-2 font-bold">AGENCE KUSTER</div>
         <div className="flex items-center gap-5 font-light">
           <Link href="/">ACCUEIL</Link>

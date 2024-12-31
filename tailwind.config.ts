@@ -52,6 +52,10 @@ export default {
       backgroundImage: {
         "background-hover": "url('/background-hover.png')",
         "background-full": "url('/background-full.png')",
+        "background-home-card": "url('/card-home.png')",
+        "background-sign-card": "url('/card-sign.png')",
+        "background-couple-card": "url('/card-couple.png')",
+        "background-library-card": "url('/card-library.png')",
       },
     },
   },

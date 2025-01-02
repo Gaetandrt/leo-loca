@@ -1,19 +1,52 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "motion/react";
+import {
+  motion,
+  MotionValue,
+  useScroll,
+  useSpring,
+  useTransform,
+} from "motion/react";
 import { useRef } from "react";
 import CoupleCard from "./card/couple-card";
 import HomeCard from "./card/home-card";
 import LibraryCard from "./card/library-card";
 import SignCard from "./card/sign-card";
 
-function SecondSection() {
+function useParallax(value: MotionValue<number>, distance: number) {
+  return useTransform(value, [0, 1], [-distance, distance]);
+}
+
+interface CardProps {
+  children: React.ReactNode;
+  position: "left" | "right";
+  offset: string;
+}
+
+function ParallaxCard({ children, position, offset }: CardProps) {
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start end", "end end"],
+    offset: ["start end", "end start"],
   });
-  const topValue = useTransform(scrollYProgress, [0, 1], [0, 175]);
+
+  const y = useSpring(
+    useParallax(scrollYProgress, position === "left" ? -100 : 100),
+    {
+      stiffness: 100,
+      damping: 30,
+    },
+  );
+
+  return (
+    <motion.div ref={ref} style={{ y }} className={`absolute ${offset}`}>
+      {children}
+    </motion.div>
+  );
+}
+
+function SecondSection() {
+  const ref = useRef(null);
 
   return (
     <section
@@ -28,24 +61,18 @@ function SecondSection() {
         <span />
       </div>
       <div className="relative p-10" style={{ height: "900px" }}>
-        <motion.div style={{ top: topValue, left: "0%" }} className="absolute">
+        <ParallaxCard position="left" offset="left-[0%]">
           <SignCard />
-        </motion.div>
-        <motion.div
-          style={{ bottom: topValue, left: "25%" }}
-          className="absolute"
-        >
+        </ParallaxCard>
+        <ParallaxCard position="right" offset="left-[25%]">
           <HomeCard />
-        </motion.div>
-        <motion.div style={{ top: topValue, left: "50%" }} className="absolute">
+        </ParallaxCard>
+        <ParallaxCard position="left" offset="left-[50%]">
           <CoupleCard />
-        </motion.div>
-        <motion.div
-          style={{ bottom: topValue, left: "75%" }}
-          className="absolute"
-        >
+        </ParallaxCard>
+        <ParallaxCard position="right" offset="left-[75%]">
           <LibraryCard />
-        </motion.div>
+        </ParallaxCard>
       </div>
       <div className="mt-20 flex items-center justify-between text-foreground">
         <span />

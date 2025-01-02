@@ -51,7 +51,7 @@ function SecondSection() {
         <span />
         <h2 className="text-2xl">
           Un accompagnement
-          <span className="font-bold">complet</span> et{" "}
+          <span className="font-bold"> complet</span> et{" "}
           <span className="font-bold">fluide</span>, pour mener à bien votre
           projet.
         </h2>
